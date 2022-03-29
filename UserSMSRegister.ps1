@@ -1,4 +1,8 @@
-﻿try{Add-PSSnapin FIMAutomation -ErrorAction Stop
+param(
+     [Parameter(Mandatory=$true)]
+     [string]$DomainName
+ )
+try{Add-PSSnapin FIMAutomation -ErrorAction Stop
 Write-Host "FIMAutomation Module is imported" -ForegroundColor Green}
 catch{Write-Host "FIMAutomation Module could not be imported" -ForegroundColor Red
 break}
@@ -6,10 +10,6 @@ try{Import-Module ActiveDirectory -ErrorAction Stop
 Write-Host "ActiveDirectory Module is imported" -ForegroundColor Green}
 catch{Write-Host "ActiveDirectory Module could not be imported" -ForegroundColor Red
 break}
-param(
-     [Parameter(Mandatory=$true)]
-     [string]$DomainName
- )
 $adusers = Get-ADUser -Filter * -Properties SamAccountName,MobilePhone
 $adusers  | ForEach-Object {
 
